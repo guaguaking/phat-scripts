@@ -11,6 +11,8 @@ module.exports = merge( commonConfig, {
     hot: true, // 热替换
     hotOnly: true, //错误回退
     port: 8080,
+    open: true,
+    quiet: true,
     //host: '0.0.0.0',
   }
 })

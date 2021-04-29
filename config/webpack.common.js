@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 const config = {
   entry: './src/index.js',
@@ -76,8 +77,11 @@ const config = {
       filename: 'index.html'
     }),
     new MiniCssExtractPlugin(),
-    new CleanWebpackPlugin()
-  ]
+    new CleanWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin({
+      logLevel: 'errors-only'
+    })
+  ],
 };
 
 module.exports = config;

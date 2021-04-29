@@ -1,15 +1,17 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
 
 import App from './App'
 import './index.less'
 import './index.scss'
 
 const render = ()=> {
-  ReactDOM.render(<App />, document.getElementById('app'));
+    ReactDOM.render(<App />, document.getElementById('app'))
 }
-render();
+render()
 
+/* eslint-disable */
 if (module.hot) {
-  module.hot.accept('./App', render)
-};
+    module.hot.accept('./App', render)
+}
+/* eslint-enable */
