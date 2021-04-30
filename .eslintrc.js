@@ -36,8 +36,8 @@ module.exports = {
             "unix"
         ],
         "semi": [
-            "error",
-            "never"
+            "warn",
+            "always"
         ]
     }
-};
+}

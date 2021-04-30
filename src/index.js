@@ -1,12 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './App'
 import './index.less'
 import './index.scss'
 
+const App = React.lazy(()=>import('./App'))
+
 const render = ()=> {
-    ReactDOM.render(<App />, document.getElementById('app'))
+    ReactDOM.render(
+        <React.Suspense fallback={<div/>}>
+            <App />
+        </React.Suspense>,
+        document.getElementById('app'))
 }
 render()
 
