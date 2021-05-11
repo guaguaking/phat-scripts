@@ -23,13 +23,16 @@ module.exports = {
     ],
     "settings": {
         "react": {
-            "version" : "detect"  
+            "version": "detect"
         }
     },
     "rules": {
+        "no-var": [
+            "error"
+        ],
         "indent": [
             "error",
-            4
+            2
         ],
         "linebreak-style": [
             "error",

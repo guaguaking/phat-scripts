@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack serve --open --config config/webpack.dev.js",
+    "dev": "webpack serve --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js",
     "lint": "npx eslint src/ --fix"
   },
@@ -32,6 +32,7 @@
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "copy-webpack-plugin": "^6.4.1",
     "css-loader": "^5.2.4",
+    "dotenv-webpack": "^7.0.2",
     "eslint": "^7.12.1",
     "eslint-plugin-react": "^7.23.2",
     "file-loader": "^6.2.0",
@@ -42,9 +43,11 @@
     "mini-css-extract-plugin": "^1.5.1",
     "node-sass": "^5.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "props-type": "^1.0.1",
     "sass-loader": "^10.1.1",
     "url-loader": "^4.1.1",
     "webpack": "^4.46.0",
+    "webpack-bundle-analyzer": "^4.4.1",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.3"
