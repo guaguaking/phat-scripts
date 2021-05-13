@@ -7,33 +7,30 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const OUTPUT_PATH = path.resolve(__dirname, '../', 'dist');
 
-module.exports = env => {
+module.exports = (env, argv) => {
 
-  return {
+  const PUBLIC_PATH = argv.mode === 'production' ? '.' : '/'
+
+  const config =  {
     entry: './src/index.js',
     output: {
       path: OUTPUT_PATH,
       filename: 'js/[name].bundle.js',
       chunkFilename: "js/chunk/[name].chunk.js",
-      publicPath: ''
+      publicPath: PUBLIC_PATH
     },
     optimization: {
       splitChunks: {
         // minChunks: 2, //文件至少被用了2次才分割；
         chunks: 'all',
         cacheGroups: {
-          // vendors: {
-          //   test: /[\\/]node_modules[\\/]/, //引入的库是从node_modules引入，就分割库代码到当前组
-          //   priority: -10, //权重，数字越大表示优先级越高
-          //   chunks: 'initial', //配置这个，是为了下面分割后的代码不报错
-          //   filename: 'js/vendors.js'
-          // },
-          propTypes: {
-            test: /[\\/]node_modules[\\/]prop-types\.js/,
-            // priority: 10,
-            // chunks: 'initial',
-            // filename: 'js/react-propTypes.js'
-          }
+          // 第三方
+          vendors: {
+            test: /[\\/]node_modules[\\/]/, //引入的库是从node_modules引入，就分割库代码到当前组
+            priority: -10, //权重，数字越大表示优先级越高
+            name: 'vendors'
+          },
+
         },
       },
     },
@@ -54,9 +51,9 @@ module.exports = env => {
                 importLoaders: 1
               }
             },
-            'postcss-loader'
+            // 'postcss-loader'
           ],
-          exclude: /\.module\.css$/
+          exclude: /\.module\./
         },
         {
           test: /\.css$/,
@@ -67,13 +64,13 @@ module.exports = env => {
               options: {
                 importLoaders: 1,
                 modules: {
-                  localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                  localIdentName: 'css-[hash:base64:6]',
                 },
               }
             },
-            'postcss-loader'
+            //'postcss-loader'
           ],
-          include: /\.module\.css$/
+          include: /\.module\./
         },
         {
           test: /\.scss$/,
@@ -146,4 +143,5 @@ module.exports = env => {
       })
     ],
   };
+  return config;
 }

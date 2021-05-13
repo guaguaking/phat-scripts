@@ -2,10 +2,10 @@ const webpack = require('webpack');
 const { merge } = require('webpack-merge')
 const getCommonConfig = require('./webpack.common')
 
-module.exports = env => {
+module.exports = (env, argv) => {
 
   return merge(
-    getCommonConfig(env),
+    getCommonConfig(env, argv),
     {
       mode: 'development',
       devtool: 'eval-source-map',
@@ -20,9 +20,7 @@ module.exports = env => {
         //host: '0.0.0.0',
       },
       plugins: [
-        new webpack.DefinePlugin({
-          NODE_ENV: JSON.stringify('development')
-        })
+        
       ]
     })
 }

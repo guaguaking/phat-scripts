@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from "react";
-import Style from './App.module.less';
+import Style from './app.module.css';
 
 let App = () => {
   return(

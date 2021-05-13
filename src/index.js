@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
+import './assets/style/normalize.css';
 import App from './layouts/App';
 
 const render = ()=> {

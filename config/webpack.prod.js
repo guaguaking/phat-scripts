@@ -3,9 +3,9 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const { merge } = require('webpack-merge')
 const getCommonConfig = require('./webpack.common')
 
-module.exports = env => {
+module.exports = (env, argv) => {
   return merge(
-    getCommonConfig(env),
+    getCommonConfig(env, argv),
     {
       mode: 'production',
       devtool: '',
@@ -15,9 +15,6 @@ module.exports = env => {
         "prop-types": "PropTypes"
       },
       plugins: [
-        new webpack.DefinePlugin({
-          NODE_ENV: JSON.stringify('production')
-        }),
         // 开启 BundleAnalyzerPlugin 
         new BundleAnalyzerPlugin()
       ]
