@@ -4,6 +4,7 @@
 
 # misc
 .DS_Store
+.npm
 .env
 .env.local
 .env.development.local
