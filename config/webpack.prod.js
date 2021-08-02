@@ -1,22 +1,27 @@
 const webpack = require('webpack');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; 
 const { merge } = require('webpack-merge')
 const getCommonConfig = require('./webpack.common')
+const middleware = require('../utils/middleware')
 
-module.exports = (env, argv) => {
-  return merge(
-    getCommonConfig(env, argv),
-    {
-      mode: 'production',
-      devtool: '',
-      externals: {
-        "react": "React",
-        "react-dom": "ReactDOM",
-        "prop-types": "PropTypes"
-      },
-      plugins: [
-        // 开启 BundleAnalyzerPlugin 
-        new BundleAnalyzerPlugin()
-      ]
-    })
+module.exports = () => {
+  const baseConfig = getCommonConfig();
+  const config = merge(baseConfig, {
+    mode: 'production',
+    devtool: '',
+    externals: {
+      "react": "React",
+      "react-dom": "ReactDOM",
+      "prop-types": "PropTypes"
+    },
+    plugins: []
+  })
+
+  const middleConfig = middleware();
+  const nextConfig = merge(config, middleConfig||{});
+  // 防止mode被篡改
+  nextConfig.mode = 'production';
+  if(!nextConfig.output.publicPath) {
+    nextConfig.output.publicPath = '/'; 
+  }
+  return nextConfig;
 }

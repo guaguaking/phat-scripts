@@ -1,23 +1,24 @@
 // const webpack = require('webpack');
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const paths = require('../utils/paths')
 
-const OUTPUT_PATH = path.resolve(__dirname, '../', 'dist');
+module.exports = () => {
 
-module.exports = (env, argv) => {
+  const OUTPUT_PATH = paths.appDist;
+  const ENTRY_PATH = paths.appSrc;
 
-  const PUBLIC_PATH = argv.mode === 'production' ? '.' : '/'
+  // const PUBLIC_PATH = argv.mode === 'production' ? '.' : '/'
 
   const config =  {
-    entry: './src/index.js',
+    entry: `${ENTRY_PATH}/index.js`,
     output: {
       path: OUTPUT_PATH,
       filename: 'js/[name].bundle.js',
       chunkFilename: "js/chunk/[name].chunk.js",
-      publicPath: PUBLIC_PATH
+      publicPath: ''
     },
     optimization: {
       splitChunks: {
@@ -130,9 +131,9 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: `${ENTRY_PATH}/index.html`,
         filename: 'index.html',
-        title: 'create-react-app',
+        title: 'create-app',
       }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css'
