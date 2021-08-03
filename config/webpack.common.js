@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const path = require('path')
 const paths = require('../utils/paths')
 
 module.exports = () => {
@@ -39,8 +40,13 @@ module.exports = () => {
       rules: [
         {
           test: /\.(js|jsx)$/,
-          use: 'babel-loader',
-          exclude: /node_modules/
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              configFile: path.resolve(__dirname, '../babel.config.js')
+            }
+          },
         },
         {
           test: /\.css$/,
