@@ -1,23 +1,19 @@
 {
-  "name": "phat-script",
-  "version": "0.0.3",
-  "description": "create a React App",
+  "name": "phat-scripts",
+  "version": "0.0.4",
+  "description": "vue-cli create-react-app",
   "main": "index.js",
   "bin": {
-    "phat-script": "./bin/phat-script.js"
+    "phat-scripts": "./bin/phat-scripts.js"
   },
   "scripts": {
-    "dev": "phat-script dev",
-    "build": "phat-script build",
-    "build:analyzer": "phat-script build -analyzer",
-    "lint": "npx eslint src/ --fix",
-    "clean": "npm cache clean --force"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wpangpp/create-app.git"
+    "url": "git+https://github.com/wpangpp/phat-scripts.git"
   },
-  "keywords": [],
+  "keywords": "webpack react vue",
   "author": "wang yu xi",
   "license": "ISC",
   "bugs": {
@@ -35,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "commander": "8.1.0",
     "copy-webpack-plugin": "^6.4.1",
     "core-js": "^3.11.1",
     "cross-spawn": "7.0.3",
@@ -50,6 +47,7 @@
     "mini-css-extract-plugin": "^1.5.1",
     "node-sass": "^5.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "portfinder": "1.0.28",
     "props-type": "^1.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

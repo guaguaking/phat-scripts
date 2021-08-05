@@ -21,6 +21,8 @@ module.exports = () => {
       chunkFilename: "js/chunk/[name].chunk.js",
       publicPath: ''
     },
+    // 性能提示 https://www.webpackjs.com/configuration/performance/
+    performance: false,
     optimization: {
       splitChunks: {
         // minChunks: 2, //文件至少被用了2次才分割；
@@ -44,7 +46,7 @@ module.exports = () => {
           use: {
             loader: 'babel-loader',
             options: {
-              configFile: path.resolve(__dirname, '../babel.config.js')
+              configFile: path.resolve(__dirname, '../lib/babel.config.js')
             }
           },
         },
@@ -128,7 +130,7 @@ module.exports = () => {
         '.vue'
       ],
       alias: {
-
+        '@': ENTRY_PATH
       }
     },
     externals: {
@@ -146,7 +148,9 @@ module.exports = () => {
       }),
       new CleanWebpackPlugin(),
       new FriendlyErrorsWebpackPlugin({
-        logLevel: 'errors-only'
+        logLevel: 'errors-only',
+        // 是否每次都清空控制台
+        // clearConsole: true,
       })
     ],
   };

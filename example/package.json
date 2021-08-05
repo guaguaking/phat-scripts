@@ -1,0 +1,14 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "",
+  "scripts": {
+    "dev": "phat-scripts dev",
+    "build": "phat-scripts build",
+    "build:analyzer": "phat-scripts build --analyzer"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}

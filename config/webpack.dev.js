@@ -1,34 +1,35 @@
+/**
+ * 导出dev配置
+ */
+
+
 const { merge } = require('webpack-merge')
 const getCommonConfig = require('./webpack.common')
-const middleware = require('../utils/middleware')
+// 压缩css
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 
-process.env.NODE_ENV = 'development';
+const baseConfig = getCommonConfig();
+const config = merge(baseConfig, {
+  mode: 'development',
+  devtool: 'eval-source-map',
+  optimization: {
+    minimizer: [
+      new OptimizeCssAssetsWebpackPlugin({}),    // css压缩可配置
+  ]
+  },
+  devServer: {
+    contentBase: false,
+    historyApiFallback: true,
+    hot: true, // 热替换
+    hotOnly: true, //错误回退
+    port: 3000,
+    open: true,
+    quiet: true,
+    host: 'localhost',
+  },
+  plugins: [
 
-module.exports = () => {
-  const baseConfig = getCommonConfig();
-  const config = merge(baseConfig, {
-      mode: 'development',
-      devtool: 'eval-source-map',
-      devServer: {
-        contentBase: false,
-        historyApiFallback: true,
-        hot: true, // 热替换
-        hotOnly: true, //错误回退
-        port: 9000,
-        open: true,
-        quiet: true,
-        //host: '0.0.0.0',
-      },
-      plugins: [
-        
-      ]
-  })
+  ]
+})
 
-  const middleConfig = middleware();
-  const nextConfig = merge(config, middleConfig||{});
-  // 防止mode被篡改
-  nextConfig.mode = 'development';
-  // 开发环境本地
-  nextConfig.output.publicPath = '';
-  return nextConfig;
-}
+module.exports = config;
